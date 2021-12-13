@@ -1,0 +1,99 @@
+body {
+  background-color: #393E46;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.head-title{
+  text-align: center;
+  font-size: 5rem;
+  margin-top: 10px;
+  color:#EEEEEE;
+}
+
+main {
+  text-align: center;
+}
+
+.player{
+  display: inline-block;
+  color: #EEEEEE;
+  margin-left: 100px;
+  margin-right: 100px;
+  position: relative;
+}
+
+.footer{
+  text-align: center;
+  margin-top: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: #EEEEEE;
+}
+
+a:hover{
+  font-size: 17px;
+}
+
+
+/* Dice Cubes */
+
+.dice{
+  width: 200px;
+  height: 200px;
+  background-color: #F7F6F2;
+  border-radius: 10%;
+  position: relative;
+}
+
+.dice-dot{
+  width: 40px;
+  height: 40px;
+  background-color: #8C0000;
+  border-radius: 100%;
+  position: absolute;
+}
+
+.dice-dot-1{
+  top: 20px;
+  left: 20px;
+}
+
+.dice-dot-2{
+  top: 20px;
+  left: 80px;
+}
+.dice-dot-3{
+  top: 20px;
+  left: 140px;
+}
+.dice-dot-4{
+  top: 80px;
+  left: 20px;
+}
+.dice-dot-5{
+  top: 80px;
+  left: 80px;
+}
+.dice-dot-6{
+  top: 80px;
+  left: 140px;
+}
+.dice-dot-7{
+  top: 140px;
+  left: 20px;
+}
+.dice-dot-8{
+  top: 140px;
+  left: 80px;
+}
+.dice-dot-9{
+  top: 140px;
+  left: 140px;
+}
+
+/* Dice Rolling */
+.dice-hidden{
+  display: none;
+}
