@@ -97,3 +97,68 @@ a:hover{
 .dice-hidden{
   display: none;
 }
+
+
+/* Media Query */
+@media (max-width: 600px){
+
+  .player{
+    display: inline-block;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .head-title{
+
+    font-size: 2rem;
+  }
+
+  .dice{
+    width: 100px;
+    height: 100px;
+  }
+
+  .dice-dot{
+    width: 20px;
+    height: 20px;
+  }
+
+  .dice-dot-1{
+    top: 10px;
+    left: 10px;
+  }
+
+  .dice-dot-2{
+    top: 10px;
+    left: 40px;
+  }
+  .dice-dot-3{
+    top: 10px;
+    left: 70px;
+  }
+  .dice-dot-4{
+    top: 40px;
+    left: 10px;
+  }
+  .dice-dot-5{
+    top: 40px;
+    left: 40px;
+  }
+  .dice-dot-6{
+    top: 40px;
+    left: 70px;
+  }
+  .dice-dot-7{
+    top: 70px;
+    left: 10px;
+  }
+  .dice-dot-8{
+    top: 70px;
+    left: 40px;
+  }
+  .dice-dot-9{
+    top: 70px;
+    left: 70px;
+  }
+
+}
