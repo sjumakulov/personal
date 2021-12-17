@@ -99,12 +99,12 @@ body {
   }
 
   .score-box {
-    margin: 40px 80px;
+    margin: 40px 30px;
     position: static;
   }
 
   .high-score-box {
-    margin: auto 30px;
+    margin: 40px 30px;
     position: static;
   }
 
@@ -117,6 +117,6 @@ body {
   }
 
   .main-box {
-    margin-top: 0;
+    margin-top: 20px;
   }
 }
