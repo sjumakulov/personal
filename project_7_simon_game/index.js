@@ -1,51 +1,114 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+// Variables:
+var boxesArray = document.querySelectorAll(".box");
+var gamesMemory = [];
+var gameIsOn = false;
+var playerRepeats = false;
+var gameStarted = false;
+var count = 0;
+var score = 0;
+var highScore = 0;
+var level = 0;
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simon Game</title>
 
-  <!-- CSS link -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles.css">
+// Sounds:
+var gameOverSound = new Audio("sounds/game-over.wav");
+var sounds = [new Audio("sounds/button-1.wav"),
+  new Audio("sounds/button-2.wav"),
+  new Audio("sounds/button-3.wav"),
+  new Audio("sounds/button-4.wav"),
+];
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@900&display=swap" rel="stylesheet">
-</head>
+// JS Media Query:
+var x = window.matchMedia("(max-width: 860px)");
+if (x.matches) {
+  document.querySelector(".start-button").classList.remove("display-none");
+  document.querySelector(".instruction").classList.add("display-none");
+  document.querySelector(".start-button").addEventListener("click", doWhenKeyDown);
+}
 
-<body class="">
-  <h1 class="restart">Level: 0</h1>
+// Click eventListeners:
+for (let i = 0; i < 4; i++) {
+  boxesArray[i].addEventListener("click", doWhenClicked);
 
-  <div class="main-box">
-    <div class="score-box">
-      <h2 class="score">Score:<br>0</h2>
-    </div>
-    <div class="high-score-box">
-      <h2 class="high-score">High Score: <br>0</h2>
-    </div>
+  function doWhenClicked() {
+    if (gameIsOn === true && gameStarted === true) {
+      sounds[i].play();
 
-    <div class="four-button-box">
-      <div class="two-button-box">
-        <div class="orange box"></div>
-        <div class="blue box"></div>
-      </div>
+      if (gamesMemory[count] !== i) {
+        gameIsOn = false;
+        playerRepeats = false;
+        gamesMemory = [];
+        document.querySelector(".restart").textContent = "Game Over!";
+        document.querySelector(".instruction").style.visibility = "visible";
+        if (x.matches) {
+          document.querySelector(".start-button").classList.remove("display-none");
+        }
 
-      <div class="two-button-box">
-        <div class="green box"></div>
-        <div class="purple box"></div>
-      </div>
-    </div>
-  </div>
+        if (highScore < score) {
+          highScore = score;
+          document.querySelector(".high-score").innerHTML = "High Score: <br>" + highScore;
+        }
 
-  <h1 class="instruction">Press a key to start</h1>
-  <button type="button" class="btn btn-primary btn-warning start-button display-none">Start</button>
+        document.querySelector("body").classList.add("game-over");
+        setTimeout(function() {
+          document.querySelector("body").classList.remove("game-over");
+        }, 300);
+        gameOverSound.play();
+        score = 0;
+        count = 0;
+        document.querySelector(".score").innerHTML = "Score: <br>" + score;
 
-  <!-- jQuery and JS link     -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script type="text/javascript" src="index.js"></script>
-</body>
+      } else {
+        count++;
+        if (count === gamesMemory.length) {
+          score = score + count;
+          document.querySelector(".score").innerHTML = "Score: <br>" + score;
+          document.querySelector(".restart").textContent = "Level: " + count;
+          playerRepeats = true;
 
-</html>
+          var randomNumber = Math.floor(Math.random() * 4);
+          var randomTime = Math.floor(Math.random() * 600 + 800);
+          setTimeout(function() {
+            boxesArray[randomNumber].classList.add("animation-2");
+            sounds[randomNumber].play();
+            gamesMemory.push(randomNumber);
+          }, randomTime);
+          setTimeout(function() {
+            boxesArray[randomNumber].classList.remove("animation-2");
+          }, randomTime + 200);
+
+          console.log("boxes player should click next:" + gamesMemory + randomNumber);
+          count = 0;
+        }
+        boxesArray[i].classList.add("animation");
+        setTimeout(function() {
+          boxesArray[i].classList.remove("animation");
+        }, 150);
+      }
+    } else if (gameIsOn === false && gameStarted === true) {
+      document.querySelector(".instruction").style.visibility = "visible";
+      document.querySelector(".restart").textContent = "Game Over!";
+    }
+  }
+}
+
+// Keydown eventListener:
+document.addEventListener("keydown", doWhenKeyDown);
+
+function doWhenKeyDown(event) {
+  if (gameIsOn === false) {
+    document.querySelector(".start-button").classList.add("display-none");
+    gameIsOn = true;
+    gameStarted = true;
+    var randomNumber = Math.floor(Math.random() * 4);
+    boxesArray[randomNumber].classList.add("animation-2");
+    setTimeout(function() {
+      boxesArray[randomNumber].classList.remove("animation-2");
+    }, 150);
+    document.querySelector(".restart").textContent = "Level: " + count;
+    document.querySelector(".instruction").style.visibility = "hidden";
+    gamesMemory.push(randomNumber);
+    playerRepeats = true;
+    sounds[randomNumber].play();
+  }
+}
