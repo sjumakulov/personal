@@ -1,0 +1,113 @@
+body{
+  text-align: center;
+  background-color: #183661;
+  font-family: 'Inknut Antiqua', serif;
+  color: white;
+  margin: 0;
+}
+
+.restart{
+  font-size: 50px;
+  margin: 0;
+}
+
+.game-over{
+  background-color: maroon;
+}
+
+.score, .high-score {
+  font-size: 30px;
+}
+
+.score-box{
+  display: inline-block;
+  position: absolute;
+  left: 5%;
+  top: 20%;
+}
+
+.high-score-box{
+  display: inline-block;
+  position: absolute;
+  right: 5%;
+  top: 20%;
+}
+
+.main-box{
+  margin-top: 40px;
+  position: relative;
+}
+
+.four-button-box{
+  display: inline-block;
+}
+
+.box{
+  width: 140px;
+  height: 140px;
+  display: inline-block;
+  border: 5px solid black;
+}
+
+.orange{
+  background-color: orange;
+  border-radius: 50% 0 0 0;
+  margin-right: 5px;
+}
+
+.green{
+  background-color: green;
+  border-radius: 0 0 0 50%;
+  margin-right: 5px;
+
+}
+
+.blue{
+  background-color: blue;
+  border-radius: 0 50% 0 0;
+}
+
+.purple{
+  background-color: purple;
+  border-radius: 0 0 50% 0;
+}
+
+.animation{
+  opacity: 0.5;
+  box-shadow: 0px 2px 100px 0px white;
+}
+
+.animation-2{
+  opacity: 0.6;
+  background-color: white;
+  box-shadow: 0px 2px 100px 0px white;
+
+}
+
+@media (max-width: 860px){
+
+  .score, .high-score {
+    font-size: 20px;
+    display: block;
+  }
+
+  .score-box{
+    margin: auto 30px;
+    position: static;
+  }
+
+  .high-score-box{
+    margin: auto 30px;
+    position: static;
+  }
+
+  .restart, .instruction{
+    font-size: 20px;
+  }
+  .four-button-box{
+    display: block;
+  }
+  .main-box{
+    margin-top: 0;
+  }
+}
